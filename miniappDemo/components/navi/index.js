@@ -13,10 +13,10 @@ Component({
    * 组件的初始数据
    */
   data: {
-    disLeftSrc: 'images/triangle.dis@left.png',
-    leftSrc: 'images/triangle@left.png',
-    highLeftSrc: 'images/triangle@left.png',
-    rightSrc: 'images/triangle@right.png'
+    leftSrc: "images/triangle@left.png",
+    rightSrc: "images/triangle@right.png",
+    disLeftSrc: "images/triangle.dis@left.png",
+    disRightSrc: "images/triangle.dis@right.png"
   },
 
   /**
@@ -24,15 +24,15 @@ Component({
    */
   methods: {
     onLeft: function(event) {
-      if(!this.properties.latest){
-        this.triggerEvent('left', {}, {}) 
+      if (!this.properties.latest) {
+        this.triggerEvent("left", {}, {});
       }
     },
 
     onRight: function(event) {
-      if(!this.properties.first){
-        this.triggerEvent('right', {}, {})
+      if (!this.properties.first) {
+        this.triggerEvent("right", {}, {});
       }
     }
   }
-})
+});
