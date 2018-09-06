@@ -5,7 +5,6 @@
     "pages/my/my"
   ],
   "window": {
-
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black",

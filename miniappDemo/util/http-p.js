@@ -7,31 +7,34 @@ const tips = {
 }
 
 class HTTP {
-  request(params) {
-    let url = config.api_base_url + params.url
-    if (!params.method) {
-      params.method = "GET"
-    }
-
+  request({ url, data = {}, method = "GET" }) {
+    return new Promise((resolve, reject) => {
+      this._request(url, resolve, reject, data, method)
+    })
+  }
+  // 将resolve作为参数传入，必填参数须在默认参数之前
+  _request(url, resolve, reject, data = {}, method = "GET") {
     wx.request({
-      url: url,
-      method: params.method,
-      data: params.data,
+      url: config.api_base_url + url,
+      method: method,
+      data: data,
       header: {
         "content-type": "application/json",
         appkey: config.appkey
       },
       success: res => {
-        let code = res.statusCode.toString()
+        const code = res.statusCode.toString()
         //startsWith & endsWith
         if (code.startsWith("2")) {
-          params.success && params.success(res.data)
+          resolve(res.data)
         } else {
-          let error_code = res.data.error_code
+          reject()
+          const error_code = res.data.error_code
           this._show_error(error_code)
         }
       },
       fail: err => {
+        reject()
         this._show_error(1)
       }
     })
@@ -41,7 +44,6 @@ class HTTP {
     if (!error_code) {
       error_code = 1
     }
-
     wx.showToast({
       title: tips[error_code] ? tips[error_code] : tips[1],
       icon: "none",

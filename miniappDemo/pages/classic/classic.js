@@ -1,8 +1,8 @@
-import { ClassicModel } from "../../models/classic.js";
-import { LikeModel } from "../../models/like.js";
+import { ClassicModel } from "../../models/classic.js"
+import { LikeModel } from "../../models/like.js"
 
-let classicModel = new ClassicModel();
-let likeModel = new LikeModel();
+const classicModel = new ClassicModel()
+const likeModel = new LikeModel()
 
 Page({
   /**
@@ -27,8 +27,8 @@ Page({
         classic: res,
         likeStatus: res.like_status,
         likeCount: res.fav_nums
-      });
-    });
+      })
+    })
 
     //封装http
     // http.request({
@@ -52,28 +52,28 @@ Page({
   },
 
   onLike: function(event) {
-    let behavior = event.detail.behavior;
-    likeModel.like(behavior, this.data.classic.id, this.data.classic.type);
+    let behavior = event.detail.behavior
+    likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
   },
 
   onNext: function(event) {
-    this._updateClassic("next");
+    this._updateClassic("next")
   },
 
   onPrevious: function(event) {
-    this._updateClassic("previous");
+    this._updateClassic("previous")
   },
 
   _updateClassic: function(nextOrPrevious) {
-    let index = this.data.classic.index;
+    const index = this.data.classic.index
     classicModel.getClassic(index, nextOrPrevious, res => {
-      this._getLikeStatus(res.id, res.type);
+      this._getLikeStatus(res.id, res.type)
       this.setData({
         classic: res,
         latest: classicModel.isLatest(res.index),
         first: classicModel.isFirst(res.index)
-      });
-    });
+      })
+    })
   },
 
   _getLikeStatus: function(artID, category) {
@@ -81,8 +81,8 @@ Page({
       this.setData({
         likeStatus: res.like_status,
         likeCount: res.fav_nums
-      });
-    });
+      })
+    })
   },
 
   /**
@@ -119,4 +119,4 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {}
-});
+})
