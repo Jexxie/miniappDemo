@@ -11,7 +11,9 @@ Page({
   data: {
     classic: null,
     latest: true,
-    first: false
+    first: false,
+    likeStatus: false,
+    likeCount: 0
   },
 
   /**
@@ -21,7 +23,10 @@ Page({
     // 数据更新， Storage
     classicModel.getLatest(res => {
       this.setData({
-        classic: res
+        // ...res
+        classic: res,
+        likeStatus: res.like_status,
+        likeCount: res.fav_nums
       });
     });
 
@@ -62,6 +67,7 @@ Page({
   _updateClassic: function(nextOrPrevious) {
     let index = this.data.classic.index;
     classicModel.getClassic(index, nextOrPrevious, res => {
+      this._getLikeStatus(res.id, res.type);
       this.setData({
         classic: res,
         latest: classicModel.isLatest(res.index),
@@ -69,6 +75,16 @@ Page({
       });
     });
   },
+
+  _getLikeStatus: function(artID, category) {
+    likeModel.getClassicLikeStatus(artID, category, res => {
+      this.setData({
+        likeStatus: res.like_status,
+        likeCount: res.fav_nums
+      });
+    });
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
