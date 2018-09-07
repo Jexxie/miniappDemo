@@ -6,25 +6,20 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    books: []
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    bookModel
-      .getHotList()
-      .then(res => {
-        console.log(res)
-        return bookModel.getMyBookCount()
+    bookModel.getHotList().then(res => {
+      // this.data.books = res 错了不能用赋值语句
+      this.setData({
+        books: res
       })
-      .then(res => {
-        console.log(res)
-        return bookModel.getMyBookCount()
-      })
-      .then(res => {
-        console.log(res)
-      })
+    })
 
     // hotList.then(res => console.log(res))
 
