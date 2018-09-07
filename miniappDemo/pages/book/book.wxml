@@ -1,1 +1,20 @@
-<v-book book="{{books[0]}}" />
+<!-- <block wx:for="{{books}}">
+  <v-book book="{{item}}" />
+</block> -->
+
+<!-- <v-book wx:for="{{books}}" book="{{item}}"></v-book> -->
+
+<view class="container">
+  <view class="header">
+    <view class="box">
+      <image src="/images/icon/search.png" />
+      <text>搜索书籍</text>
+    </view>
+  </view>
+  <viex class="sub-container">
+    <image class="head-img" src="/images/book/quality.png" />
+    <view class="books-container">
+      <v-book wx:key="id" wx:for="{{books}}" book="{{item}}"></v-book>
+    </view>
+  </viex>
+</view>
