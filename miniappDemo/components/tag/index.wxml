@@ -1,4 +1,4 @@
-<view class="container">
+<view class="tag-class container">
   <text>{{text}}</text>
   <!-- slot和组件的properties类似，向组件内部传递数据或标签 -->
   <slot name="after"></slot>

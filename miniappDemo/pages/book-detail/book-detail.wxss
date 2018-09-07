@@ -25,7 +25,7 @@
 }
 
 .head image {
-  width: 300rpx;
+  width: 200rpx;
   height: 300rpx;
   box-shadow: 2px 2px 3px #e3e3e3
 }
@@ -62,4 +62,22 @@
   margin-left: 10rpx;
   font-size: 22rpx;
   color: #aaa;
+}
+
+/* 普通方法写颜色样式 强行hack 需要了解组件内部*/
+/* .comment-container > v-tag:nth-child(1) > view{
+  background-color: #fffbdd
+}
+
+.comment-container > v-tag:nth-child(2) > view{
+  background-color: #eefbff
+} */
+
+/* 使用小程序的外部样式实现 */
+.ex-tag1 {
+  background-color: #fffbdd !important;
+}
+
+.ex-tag2 {
+  background-color: #eefbff !important;
 }

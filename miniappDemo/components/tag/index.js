@@ -11,6 +11,9 @@ Component({
     text: String
   },
 
+  // 外部样式
+  externalClasses: ["tag-class"],
+
   /**
    * 组件的初始数据
    */
