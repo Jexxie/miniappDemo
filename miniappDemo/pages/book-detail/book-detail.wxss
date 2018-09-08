@@ -64,7 +64,15 @@
   color: #aaa;
 }
 
+.content {
+  text-indent: 58rpx;
+  color:#000000;
+  font-weight: 500;
+}
+
 /* 普通方法写颜色样式 强行hack 需要了解组件内部*/
+/* 默认样式 自定义样式 开发者要求用户 
+不违反组件封装原则的 修改默认样式的机制 */
 /* .comment-container > v-tag:nth-child(1) > view{
   background-color: #fffbdd
 }
@@ -80,4 +88,24 @@
 
 .ex-tag2 {
   background-color: #eefbff !important;
+}
+
+.detail-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-bottom: 100rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.description {
+  color: #999;
+  margin-right: 30rpx;
 }
