@@ -10,7 +10,7 @@
   <view class="sub-container">
     <text class="headline">短评</text>
     <view class="comment-container">
-      <v-tag tag-class="{{index === 0 ? 'ex-tag1' : '' || index === 1 ? 'ex-tag2' : ''}}" wx:key="content" wx:for="{{comments}}" text="{{item.content}}">
+      <v-tag tag-class="{{tool.hightlight(index)}}" wx:key="content" wx:for="{{util.limit(comments, 3)}}" text="{{item.content}}">
         <text class="num" slot="after">{{"+" + item.nums}}</text>
       </v-tag>
     </view>
@@ -21,23 +21,64 @@
   </view>
 
   <view class="sub-container">
-      <text class="headline">书本信息</text>
-      <view class="detail-container">
-        <view class="vertical">
-          <text class="description">出版社</text>
-          <text class="description">出版年</text>
-          <text class="description">页数</text>
-          <text class="description">定价</text>
-          <text class="description">装帧</text>
-        </view>
-        <view class="vertical">
-          <text class="">{{book.publisher}}</text>
-          <text class="">{{book.pubdate}}</text>
-          <text class="">{{book.pages}}</text>
-          <text class="">{{book.price}}</text>
-          <text class="">{{book.binding}}</text>
-        </view>
+    <text class="headline">书本信息</text>
+    <view class="detail-container">
+      <view class="vertical">
+        <text class="description">出版社</text>
+        <text class="description">出版年</text>
+        <text class="description">页数</text>
+        <text class="description">定价</text>
+        <text class="description">装帧</text>
+      </view>
+      <view class="vertical">
+        <text class="">{{book.publisher}}</text>
+        <text class="">{{book.pubdate}}</text>
+        <text class="">{{book.pages}}</text>
+        <text class="">{{book.price}}</text>
+        <text class="">{{book.binding}}</text>
       </view>
     </view>
+  </view>
 </view>
+
+<view class="post-container" wx:if="{{!posting}}">
+  <view bind:tap="onFakePost" class="post-fake">
+    <text>输入短评</text>
+  </view>
+  <view class="like-container">
+      <v-like class="like" bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}" />
+  </view>
+</view>
+
+<view class="posting-container" wx:if="{{posting}}">
+  <view class="post-header">
+    <text>仅可点击标签+1</text>
+    <text bind:tap="onCancel" class="cancle">取消</text>
+  </view>
+  <view class="comment-container">
+      <v-tag bind:tapping="onPost" tag-class="{{tool.hightlight(index)}}" wx:key="content" wx:for="{{util.limit(comments, 3)}}" text="{{item.content}}">
+          <text class="num" slot="after">{{"+" + item.nums}}</text>
+        </v-tag>
+  </view>
+  <input bindconfirm="onPost" class="post" placeholder="短评最多12字"></input>
+</view>
+
+<v-mask wx:if="{{posting}}"/>
+
+<wxs module="tool">
+  var hightlight = function(index) {
+    if(index === 0) {
+      return 'ex-tag1'
+    }
+    if(index === 1) {
+      return 'ex-tag2'
+    }
+    return ''
+  }
+  module.exports = {
+    hightlight: hightlight
+  }
+</wxs>
+
+
 
