@@ -1,0 +1,4 @@
+<button bind:getuserinfo="onGetUserInfo" open-type="{{openType}}" class="container" plain='{{true}}'>
+   <!-- plain 按钮是否镂空，背景色透明 -->
+  <slot name="img"></slot>
+</button>

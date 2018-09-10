@@ -47,6 +47,9 @@
   </view>
   <view class="like-container">
       <v-like class="like" bind:like="onLike" like="{{likeStatus}}" count="{{likeCount}}" />
+      <v-img-btn class="share-btn" open-type="share">
+        <image class="share" slot="img" src="../../images/icon/share.png" />
+      </v-img-btn>
   </view>
 </view>
 
@@ -60,7 +63,7 @@
           <text class="num" slot="after">{{"+" + item.nums}}</text>
         </v-tag>
   </view>
-  <input bindconfirm="onPost" class="post" placeholder="短评最多12字"></input>
+  <input focus="{{posting}}" bindconfirm="onPost" class="post" placeholder="短评最多12个字"></input>
 </view>
 
 <v-mask wx:if="{{posting}}"/>

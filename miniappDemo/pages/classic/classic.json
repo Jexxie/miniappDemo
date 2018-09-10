@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "v-like": "/components/like/index",
+    "v-img-btn": "/components/image-button/index",
     "v-movie": "/components/classic/movie/index",
     "v-music": "/components/classic/music/index",
     "v-essay": "/components/classic/essay/index",
