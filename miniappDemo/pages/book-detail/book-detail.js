@@ -26,19 +26,19 @@ Page({
     const likeStatus = bookModel.getLikeStatus(id)
 
     detail.then(res => {
-      console.log(res)
+      // console.log(res)
       this.setData({
         book: res
       })
     })
     comments.then(res => {
-      console.log(res)
+      // console.log(res)
       this.setData({
         comments: res.comments
       })
     })
     likeStatus.then(res => {
-      console.log(res)
+      // console.log(res)
       this.setData({
         likeStatus: res.like_status,
         likeCount: res.fav_nums

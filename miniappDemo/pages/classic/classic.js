@@ -22,7 +22,7 @@ Page({
   onLoad: function(options) {
     // 数据更新， Storage
     classicModel.getLatest(res => {
-      console.log(res)
+      // console.log(res)
       this.setData({
         // ...res
         classic: res,
@@ -30,7 +30,7 @@ Page({
         likeCount: res.fav_nums
       })
     })
-    console.log("classic: ", this.data.classic)
+    // console.log("classic: ", this.data.classic)
 
     //封装http
     // http.request({
@@ -54,6 +54,7 @@ Page({
   },
 
   onLike: function(event) {
+    console.log("event: ", event)
     let behavior = event.detail.behavior
     likeModel.like(behavior, this.data.classic.id, this.data.classic.type)
   },
@@ -68,10 +69,10 @@ Page({
 
   _updateClassic: function(nextOrPrevious) {
     const index = this.data.classic.index
-    console.log("index:", index)
-    console.log("nextOrPrevious:", nextOrPrevious)
+    // console.log("index:", index)
+    // console.log("nextOrPrevious:", nextOrPrevious)
     classicModel.getClassic(index, nextOrPrevious, res => {
-      console.log("res2: ", res)
+      // console.log("res2: ", res)
       this._getLikeStatus(res.id, res.type)
       this.setData({
         classic: res,
