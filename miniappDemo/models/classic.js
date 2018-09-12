@@ -32,11 +32,14 @@ class ClassicModel extends HTTP {
       nextOrPrevious == "next"
         ? this._getKey(index + 1)
         : this._getKey(index - 1)
+    console.log("key: ", key)
     let classic = wx.getStorageSync(key)
     if (!classic) {
       this.request({
+        // classic/7/previous
         url: `classic/${index}/${nextOrPrevious}`,
         success: res => {
+          console.log("res3: ", res)
           wx.setStorageSync(this._getKey(res.index), res)
           sCallback(res)
         }
